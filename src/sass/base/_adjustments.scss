@@ -1,0 +1,242 @@
+@use "../abstracts/sizes" as *;
+@use "../abstracts/mixins" as *;
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none !important;
+}
+
+input {
+  -moz-appearance: textfield !important;
+}
+
+mark {
+  background-color: rgba(var(--color-tertiary-500-rgb), 0.32);
+  font-weight: 500;
+  border-radius: 2px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.mdc-button .mdc-button__label {
+  width: inherit;
+}
+
+.highlight-weekend {
+  .mat-calendar-body-cell-content {
+    color: var(--color-primary-500);
+
+    &.mat-calendar-body-selected {
+      color: white;
+    }
+  }
+}
+
+.highlight-special-date {
+  background-color: rgba(var(--color-tertiary-500-rgb), 0.8) !important;
+  border-radius: $size-8;
+}
+
+
+.mat-mdc-form-field-icon-suffix {
+  padding: 0 $size-1 !important;
+}
+
+//.mat-mdc-form-field-error {
+//  display: inline-block !important;
+//  padding-inline-end: $size-4;
+//}
+
+.mat-date-range-input-mirror {
+  padding-inline-start: $size-2;
+}
+
+.mat-datepicker-content .mat-calendar {
+  min-width: 320px !important;
+  min-height: 382px !important;
+}
+
+.mat-calendar-header {
+  padding: 0 $size-2 !important;
+}
+
+.mat-calendar-arrow {
+  margin-inline-start: $size-3 !important;
+}
+
+.mat-calendar-body {
+  &-cell {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 94% !important;
+    height: 94% !important;
+
+    &-content {
+      padding-block-start: 2px !important;
+      font-weight: 500;
+    }
+  }
+
+  @media (hover: hover) {
+    .mat-calendar-body-cell:not(&-disabled):hover > .mat-calendar-body-cell-content:not(&-selected):not(&-comparison-identical) {
+      color: var(--mat-datepicker-calendar-period-button-text-color);
+      transition: background-color .12s ease-in-out;
+    }
+  }
+}
+
+.mat-mdc-table {
+  .mdc-data-table__header-row {
+    background: rgba(var(--color-gray-800-rgb), 0.04);
+  }
+
+  .mdc-data-table__row {
+    transition: background-color 150ms ease;
+
+    &:hover {
+      background-color: rgba(var(--color-gray-800-rgb), 0.01) !important;
+    }
+  }
+}
+
+.mdc-evolution-chip-set {
+  &__chips {
+    display: flex;
+    flex-flow: row !important;
+    justify-content: inherit;
+    align-items: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 6px;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding-block-end: $size-2;
+    margin: 0 !important;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (hover: hover) {
+      padding: 0 0 $size-2;
+
+      &::-webkit-scrollbar {
+        display: inherit;
+      }
+    }
+  }
+
+  .mdc-evolution-chip {
+    margin: 0 !important;
+  }
+
+  .mat-mdc-chip-action-label {
+    margin: 0 2px 1px;
+    display: contents;
+  }
+}
+
+.mat-mdc-standard-chip {
+  --mdc-chip-elevated-container-color: rgba(var(--color-gray-500-rgb), 0.12) !important;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  justify-content: space-between;
+  padding-inline: $size-1 !important;
+}
+
+.mat-mdc-dialog-container {
+  .mdc-dialog {
+    .mdc-dialog__content {
+      padding: 0 !important;
+    }
+
+    &__surface {
+      border-radius: var(--mdc-shape-medium);
+    }
+  }
+}
+
+/*Start customizing accordion*/
+.mat-expansion-panel {
+  border-radius: 0 !important;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline-start: 1rem;
+    width: calc(100% - 1rem);
+    height: 1px;
+    background-color: rgb(var(--color-gray-800-rgb), 0.08);
+  }
+
+  &:not([class*=mat-elevation-z]) {
+    box-shadow: none !important;
+  }
+
+  &-header {
+    padding: 0 1rem !important;
+  }
+
+  &-body {
+    padding: 0 !important;
+    max-height: 30vh;
+    overflow-y: auto;
+  }
+
+  &-spacing {
+    margin: 0 !important;
+  }
+}
+
+.mat-expansion-indicator {
+  &::before, &::after {
+    border-color: rgba(var(--color-gray-800-rgb), 0.4);
+  }
+}
+
+/*End customizing accordion*/
+@media (hover: hover) {
+  ::-webkit-scrollbar {
+    width: $size-1;
+    height: $size-1;
+
+    &-track {
+      background-color: var(--color-gray-100);
+    }
+
+    &-thumb {
+      background-color: rgba(var(--color-gray-800-rgb), 0.24);
+      border-radius: $border-radius-sm;
+    }
+
+    &-thumb:hover {
+      background-color: rgba(var(--color-gray-800-rgb), 0.32);
+    }
+
+    &-thumb:active {
+      background-color: rgba(var(--color-gray-800-rgb), 0.44);
+    }
+  }
+}
+
+::selection {
+  background-color: var(--color-primary-500);
+  color: white;
+}
+
+.truncate-line {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

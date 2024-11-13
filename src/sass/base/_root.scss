@@ -1,0 +1,83 @@
+@use "../abstracts/sizes" as *;
+@use "../abstracts/colors" as *;
+@use "../abstracts/functions" as *;
+
+:root {
+
+  --mat-sidenav-container-shape: 0;
+  --mat-sidenav-container-width: 20rem;
+  --mat-sidenav-left-container-width: 6rem;
+  --mat-sidenav-right-container-width: 20rem;
+  --mat-sidenav-content-background-color: white;
+
+  --mdc-linear-progress-active-indicator-height: 3px;
+  --mdc-linear-progress-track-height: 3px;
+
+  --mat-toolbar-standard-height: 3.5rem;
+  --mat-toolbar-mobile-height: 3.5rem;
+  --mat-toolbar-container-background-color: $light-primary-text;
+
+  --mat-tab-header-divider-height: 1px;
+  --mat-tab-header-divider-color: rgba(var(--color-gray-000-rgb), 0.12);
+
+  --mat-form-field-container-vertical-padding: .75rem;
+  --mat-form-field-container-height: 3rem;
+
+  --mat-list-active-indicator-shape: 0;
+
+  --mat-badge-container-overlap-offset: -1.3rem;
+  --mat-badge-legacy-container-size: 22px;
+  --mat-badge-container-size: 22px;
+  --mat-badge-text-weight: 500;
+
+  --mat-bottom-sheet-container-shape: .5rem;
+
+  --mdc-shape-medium: .5rem;
+
+  --mat-datepicker-calendar-period-button-text-color: var(--color-primary-900);
+  --mat-datepicker-calendar-period-button-icon-color: var(--color-primary-900);
+  --mat-datepicker-calendar-date-selected-state-background-color: var(--color-primary-500);
+  --mat-datepicker-calendar-date-selected-disabled-state-background-color: rgba(var(--color-primary-800-rgb), 0.5);
+  --mat-datepicker-calendar-date-focus-state-background-color: rgba(var(--color-primary-500-rgb), 0.08);
+  --mat-datepicker-calendar-date-hover-state-background-color: rgba(var(--color-primary-500-rgb), 0.16);
+  --mat-datepicker-calendar-date-in-range-state-background-color: rgba(var(--color-primary-500-rgb), 0.1);
+  --mat-datepicker-calendar-date-today-outline-color: rgba(var(--color-primary-500-rgb), 0.6);
+  --mat-datepicker-calendar-date-today-selected-state-outline-color: white;
+  --mat-datepicker-calendar-date-preview-state-outline-color: rgba(var(--color-primary-500-rgb), 0.6);
+  --mat-datepicker-calendar-body-label-text-weight: 600;
+  --mat-datepicker-calendar-period-button-text-weight: 600;
+  --mat-datepicker-calendar-text-size: 0.875rem;
+  --mat-datepicker-calendar-text-weight: 500;
+  --mat-datepicker-calendar-header-text-size: 0.75rem;
+
+  --mat-text-button-horizontal-padding: 1rem;
+  --mat-text-button-with-icon-horizontal-padding: 1rem;
+  --mdc-text-button-container-shape: 10rem;
+  --mdc-outlined-button-outline-color: rgba(var(--color-gray-800-rgb), 0.12);
+
+  --mat-table-background-color: transparent;
+  --mat-paginator-container-background-color: transparent;
+  --mat-table-row-item-outline-color: rgba(var(--color-gray-800-rgb), 0.1);
+  --mat-table-header-container-height: 52px;
+  --mat-table-footer-container-height: 44px;
+  --mat-table-row-item-container-height: 44px;
+
+  @each $color, $shade-map in $palettes {
+    @each $shade, $value in $shade-map {
+      --color-#{$color}-#{$shade}: #{$value};
+      --color-#{$color}-#{$shade}-rgb: #{hex-to-rgb($value)};
+    }
+  }
+
+  @each $size-name, $size-value in $sizes {
+    --size-#{$size-name}: #{$size-value};
+  }
+
+  @each $size-name, $size-value in $sizes {
+    --gap-#{$size-name}: #{$size-value};
+  }
+
+  @each $size-name, $size-value in $font-sizes {
+    --text-#{$size-name}: #{$size-value};
+  }
+}

@@ -1,0 +1,16 @@
+@use "../abstracts/sizes" as *;
+@use "../abstracts/mixins" as *;
+
+.container_empty-state {
+  @include div-style(column, center, center);
+  padding: $size-16 $size-6 $size-6;
+  gap: $size-10
+}
+
+.container_home {
+  &-main {
+    margin-block: 7.5rem;
+
+  }
+}
+

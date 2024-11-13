@@ -1,0 +1,15 @@
+<mat-tab-group preserveContent dynamicHeight>
+   <mat-tab label="Settings">
+         <app-first-tab-content (filtersChanged)="onFiltersChanged($event)"
+                                [categories]="categories"
+                                [provinces]="provinces"
+                                [selectedAvailability]="selectedAvailability"
+                                [selectedCategories]="selectedCategories"
+                                [selectedPriceRange]="selectedPriceRange"
+                                [selectedProvinces]="selectedProvinces"
+                                [selectedRating]="selectedRating"/>
+   </mat-tab>
+   <mat-tab label="Variables">
+         Variables goes here!
+   </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,66 @@
+<mat-sidenav-container>
+   <mat-sidenav #leftSidenav [opened]="!isXSmall" fixedInViewport="true" [mode]="isXSmall ? 'over' : 'side'" class="sidenav_left">
+      <button mat-button *ngFor="let navLink of navLinks" [routerLink]="navLink.route" class="sidenav_link"
+              [color]="currentRoute === navLink.route ? 'primary' : ''">
+         <div class="div-col gap-1">
+            <img [alt]="navLink.label" src="{{ navLink.img }}"/>
+            <span>{{ navLink.label }}</span>
+         </div>
+      </button>
+   </mat-sidenav>
+   <mat-sidenav #rightSidenav position="end" [opened]="isDesktop" class="sidenav_right" fixedInViewport="true" mode="side">
+      <app-sidenav-right/>
+   </mat-sidenav>
+   <mat-sidenav-content #sidenavContent>
+      <mat-toolbar>
+         <mat-toolbar-row [class.shadowed]="isScrolled" class="div-row-full shadowed-reset">
+            <ng-container *ngFor="let navLink of navData">
+               <div *ngIf="isRouteMatching(navLink.route)" class="div-row-sb">
+                  <button *ngIf="isXSmall" (click)="leftSidenav.toggle()" mat-icon-button onclick="this.blur()" style="line-height: 1">
+                     <span class="material-symbols-outlined" [ngClass]="{'text-primary' : leftSidenav?.opened}">
+                        menu
+                     </span>
+                  </button>
+                  <a *ngIf="!isXSmall && navLink.showLogo" routerLink="/">
+                     <img alt="i4twins Logo" class="nav_logo-mobile" src="../../../assets/icon/top-nav/i4twins-v2.svg"/>
+                  </a>
+                  <a (click)="goBack()" *ngIf="navLink.showArrow" class="m-inline-start-1" mat-icon-button>
+                     <div class="material-symbols-outlined">arrow_forward_ios</div>
+                  </a>
+                  <div class="nav_title mat-headline-5 nmb whitespace-nowrap">{{ navLink.label }}</div>
+                  <button mat-icon-button matBadge="{{ 3 }}"
+                          routerLink="/" style="line-height: 1">
+                     <span class="material-symbols-outlined">notifications</span>
+                  </button>
+                  <a mat-icon-button style="line-height: 1">
+                     <span class="material-symbols-outlined">account_circle</span>
+                  </a>
+                  <button (click)="isMobile ? openSettingsBottomSheet() : rightSidenav.toggle()" mat-icon-button onclick="this.blur()" style="line-height: 1">
+                     <span class="material-symbols-filled" [ngClass]="{'text-primary' : rightSidenav?.opened}">tune</span>
+                  </button>
+               </div>
+            </ng-container>
+         </mat-toolbar-row>
+<!--         <mat-toolbar-row *ngIf="isDesktop" [class.shadowed]="isScrolled" class="div-row-full shadowed-reset">-->
+<!--            <div class="div-row-start">-->
+<!--               <a class="m-inline-end-4" routerLink="/home">-->
+<!--                  <img alt="i4twins Logo" class="nav_logo-desktop" src="../../../assets/icon/top-nav/i4twins-v2.svg"/>-->
+<!--               </a>-->
+<!--               <ng-container *ngFor="let navLink of navLinks">-->
+<!--                  <a mat-button [routerLink]="navLink.route" [color]="isRouteMatching(navLink.route) ? 'primary' : null">-->
+<!--                     {{ navLink.label }}-->
+<!--                  </a>-->
+<!--               </ng-container>-->
+<!--               <a class="div-row nav_btn-dimension mat-subtitle-2 nmb link link_content" (click)="toggleLanguage()"-->
+<!--                  [routerLink]="isEn ? '' : ''">-->
+<!--                  {{ isEn ? 'فا' : 'EN' }}-->
+<!--               </a>-->
+<!--            </div>-->
+<!--         </mat-toolbar-row>-->
+
+      </mat-toolbar>
+      <mat-divider class="sticky z-10"/>
+      <router-outlet/>
+      <app-footer *ngIf="showFooter$ | async"/>
+   </mat-sidenav-content>
+</mat-sidenav-container>

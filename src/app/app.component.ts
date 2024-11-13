@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {RouterOutlet} from "@angular/router";
+import {TopNavComponent} from "./core/top-nav/top-nav.component";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  standalone: true,
+  imports:[
+    CommonModule,
+    TopNavComponent,
+  ]
 })
 export class AppComponent {
-  title = 'i4twins-dashboard';
 }

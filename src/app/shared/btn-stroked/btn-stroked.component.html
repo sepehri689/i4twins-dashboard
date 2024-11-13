@@ -1,0 +1,18 @@
+<button [disabled]="disabled" [style.border-radius]="borderRadius" [style.height]="height" [type]="type" color="secondary"
+        mat-stroked-button>
+   <div class="div-row">
+      <div *ngIf="rightIcon" class="div-row m-inline-start-1">
+          <span class="material-symbols-outlined text-xl">
+            <ng-content select="[icon-right]"></ng-content>
+          </span>
+      </div>
+      <div *ngIf="text" class="mat-body-2 m-inline-2 whitespace-nowrap">
+         <ng-content select="[text]"></ng-content>
+      </div>
+      <div *ngIf="leftIcon" class="div-row m-inline-end-1">
+          <span class="material-symbols-outlined text-xl">
+            <ng-content select="[icon-left]"></ng-content>
+          </span>
+      </div>
+   </div>
+</button>

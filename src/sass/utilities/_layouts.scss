@@ -1,0 +1,64 @@
+@use "../abstracts" as abs;
+
+.div {
+  display: flex;
+
+  &-row {
+    @include abs.div-style(row, center, center);
+  }
+
+  &-row-full {
+    @include abs.div-style(row, center, center, 100%);
+  }
+
+  &-row-start {
+    @include abs.div-style(row, flex-start, center, 100%);
+  }
+
+  &-row-end {
+    @include abs.div-style(row, flex-end, center, 100%);
+  }
+
+  &-row-start-content {
+    @include abs.div-style(row, flex-start, flex-start, 100%);
+  }
+
+  &-row-sb {
+    @include abs.div-style(row, space-between, center, 100%);
+  }
+
+  &-col {
+    @include abs.div-style(column, center, center);
+  }
+
+  &-col-full {
+    @include abs.div-style(column, center, center, 100%);
+  }
+
+  &-col-start {
+    @include abs.div-style(column, flex-start, flex-start, fit-content);
+  }
+
+  &-col-end {
+    @include abs.div-style(column, flex-start, flex-end, fit-content);
+  }
+
+  &-col-start-content {
+    @include abs.div-style(column, flex-start, flex-start, 100%);
+
+  }
+
+  &-col-sb {
+    @include abs.div-style(column, space-between, center, 100%);
+  }
+}
+
+.whitespace {
+  &-normal {
+    white-space: normal;
+  }
+
+  &-nowrap {
+    white-space: nowrap;
+  }
+}

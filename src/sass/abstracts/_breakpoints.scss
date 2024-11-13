@@ -1,0 +1,12 @@
+$breakpoints: (
+  //'xs': 0,
+        'sm': 600px,
+        'md': 960px,
+        'lg': 1280px,
+        'xl': 1920px
+);
+
+$isSmall: 600px;
+$isMedium: 960px;
+$isLarge: 1280px;
+$isXLarge: 1920px;

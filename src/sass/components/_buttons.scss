@@ -1,0 +1,66 @@
+@use "../abstracts/tokens" as *;
+@use "../abstracts/colors" as *;
+
+.link {
+  text-decoration: none;
+  cursor: pointer;
+
+  &_nav {
+    color: $light-primary-text;
+    background-color: var(--color-primary-500);
+    //transition: color $transition-duration-short,
+    //background-color $transition-duration-short;
+
+    &:hover {
+      color: var(--color-primary-500);
+      background-color: $light-primary-text;
+    }
+
+    &:active {
+      background-color: rgba($light-primary-text, 0.8);
+    }
+  }
+
+  &_neutral {
+    color: $light-primary-text;
+    opacity: $link-opacity;
+    transition: opacity $transition-duration-short;
+
+    &:hover {
+      opacity: $link-hover-opacity;
+    }
+
+    &:focus,
+    &:active {
+      opacity: $link-focus-opacity;
+    }
+  }
+
+  &_content {
+    color: $dark-primary-text;
+    transition: color $transition-duration-short,
+    opacity $transition-duration-short;
+
+    &:hover,
+    &:focus {
+      color: var(--color-primary-500);
+    }
+
+    &:active {
+      opacity: $link-opacity;
+    }
+  }
+
+  &_default {
+    color: $light-primary-text;
+    transition: opacity $transition-duration-short;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:active {
+      opacity: $link-opacity;
+    }
+  }
+}

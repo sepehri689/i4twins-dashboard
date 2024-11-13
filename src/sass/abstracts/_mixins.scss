@@ -1,0 +1,69 @@
+@use "./breakpoints" as *;
+@use "./sizes" as *;
+
+@mixin mq($type: "min", $breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @if $type == "min" {
+      @media (min-width: map-get($breakpoints, $breakpoint)) {
+        @content;
+      }
+    } @else if $type == "max" {
+      @media (max-width: map-get($breakpoints, $breakpoint)) {
+        @content;
+      }
+    } @else {
+      @warn "Invalid type `#{$type}`. Use 'min' or 'max'.";
+    }
+  } @else {
+    @warn "No value could be retrieved from `#{$breakpoint}`.";
+  }
+}
+
+@mixin container($max-width: 80rem, $padding-inline: $gutter-x, $padding-block: $gutter-y) {
+  width: 100%;
+  max-width: $max-width;
+  padding-inline: $padding-inline;
+  padding-block: $padding-block;
+  margin-inline: auto;
+}
+
+@mixin div-style($direction, $justify, $align, $width: auto, ) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  width: $width;
+}
+
+@mixin width($type: "min", $breakpoint, $gap: $gap-row-default, $divider: 1) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @if $type == "min" {
+      width: min(calc(100% - ($divider - 1) * $gap) / $divider, map-get($breakpoints, $breakpoint));
+    } @else if $type == "max" {
+      width: max(calc(100% - ($divider - 1) * $gap) / $divider, map-get($breakpoints, $breakpoint));
+
+    } @else {
+      @warn "Invalid type `#{$type}`. Use 'min' or 'max'.";
+    }
+  } @else {
+    @warn "No value could be retrieved from `#{$breakpoint}`.";
+  }
+}
+
+@mixin col($size: 12) {
+  flex: 0 0 percentage($size / 12);
+  max-width: percentage($size / 12);
+}
+
+@mixin col-responsive($breakpoints, $sizes...) {
+  @each $size in $sizes {
+    $breakpoint: nth($size, 1);
+    $col-size: nth($size, 2);
+
+    @if map-get($breakpoints, $breakpoint) {
+      @media (min-width: map-get($breakpoints, $breakpoint)) {
+        @include col($col-size);
+      }
+    }
+  }
+}

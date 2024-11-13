@@ -1,0 +1,128 @@
+@use "../abstracts/breakpoints" as *;
+@use "../abstracts/sizes" as *;
+@use "../abstracts/mixins" as *;
+
+@each $abbr, $name in ("t": "top", "r": "right", "b": "bottom", "l": "left") {
+  @each $prop, $prop-name in ("m": "margin", "p": "padding") {
+    @for $i from 1 through 100 {
+      .#{$prop}#{$abbr}-#{$i} {
+        #{$prop-name}-#{$name}: 0.063rem * $i;
+      }
+    }
+  }
+}
+
+@each $gap-size, $property in ("gap": "gap") {
+  @for $i from 1 through 100 {
+    .#{$gap-size}-#{$i} {
+      #{$property}: 0.063rem * $i;
+    }
+  }
+}
+
+@for $i from 1 through 100 {
+  .z-#{$i} {
+    z-index: $i;
+  }
+}
+
+
+@each $size-name, $size-value in $sizes {
+  .m {
+    &-#{$size-name} {
+      margin: $size-value;
+    }
+
+    &-block-start-#{$size-name} {
+      margin-block-start: $size-value;
+    }
+
+    &-block-end-#{$size-name} {
+      margin-block-end: $size-value;
+    }
+
+    &-block-#{$size-name} {
+      margin-block: $size-value;
+    }
+
+    &-inline-start-#{$size-name} {
+      margin-inline-start: $size-value;
+    }
+
+    &-inline-end-#{$size-name} {
+      margin-inline-end: $size-value;
+    }
+
+    &-inline-#{$size-name} {
+      margin-inline: $size-value;
+    }
+  }
+
+  .p {
+    &-#{$size-name} {
+      padding: $size-value;
+    }
+
+    &-block-start-#{$size-name} {
+      padding-block-start: $size-value;
+    }
+
+    &-block-end-#{$size-name} {
+      padding-block-end: $size-value;
+    }
+
+    &-block-#{$size-name} {
+      padding-block: $size-value;
+    }
+
+    &-inline-start-#{$size-name} {
+      padding-inline-start: $size-value;
+    }
+
+    &-inline-end-#{$size-name} {
+      padding-inline-end: $size-value;
+    }
+
+    &-inline-#{$size-name} {
+      padding-inline: $size-value;
+    }
+  }
+}
+
+@each $width, $value in ("min": "min", "max": "max") {
+  @each $breakpoint, $size in $breakpoints {
+    .width-#{$width}-#{$breakpoint} {
+      @include width($width, $breakpoint);
+    }
+  }
+}
+
+.mx-auto {
+  margin-inline: auto;
+}
+
+.mb-auto {
+  margin-bottom: auto;
+}
+
+.gutter {
+  &-x {
+    padding-inline: $gutter-x;
+  }
+
+  &-y {
+    padding-block: $gutter-y;
+  }
+}
+
+.h-full {
+  height: 100%;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.nmb {
+  margin-block-end: 0 !important;
+}

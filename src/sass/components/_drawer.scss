@@ -1,0 +1,16 @@
+@use "../abstracts/mixins" as *;
+
+.mat-drawer{
+  &-backdrop {
+    position: fixed !important;
+  }
+
+  &-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  &-content {
+    overflow: hidden !important;
+  }
+}

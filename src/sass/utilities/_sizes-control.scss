@@ -1,0 +1,16 @@
+@use "../abstracts/sizes" as *;
+
+@each $size, $size-value in $sizes {
+  .gap-#{$size} {
+    gap: var(--size-#{$size});
+  }
+}
+
+@each $size-name, $size-value in $font-sizes {
+  .text-#{$size-name} {
+    font-size: var(--font-#{$size-name});
+    line-height: $size-value;
+  }
+}
+
+

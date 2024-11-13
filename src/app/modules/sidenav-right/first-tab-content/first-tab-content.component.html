@@ -1,0 +1,69 @@
+<div class="div-col-start-content">
+   <mat-accordion class="w-full" displayMode="flat">
+      <mat-expansion-panel>
+         <mat-expansion-panel-header collapsedHeight="56px" expandedHeight="64px">
+            <mat-panel-title>
+               <span class="mat-subtitle-1 nmb txt-gray-900">دسته بندی کالا ها</span>
+            </mat-panel-title>
+         </mat-expansion-panel-header>
+         <mat-selection-list (selectionChange)="emitFilters()" [formControl]="selectedCategories" [multiple]="true">
+            <mat-list-option *ngFor="let category of categories" [value]="category">
+               {{ category }}
+            </mat-list-option>
+         </mat-selection-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+         <mat-expansion-panel-header collapsedHeight="56px" expandedHeight="64px">
+            <mat-panel-title>
+               <span class="mat-subtitle-1 nmb txt-gray-900">موقعیت مکانی</span>
+            </mat-panel-title>
+         </mat-expansion-panel-header>
+         <mat-form-field class="search">
+            <mat-label>جستجو</mat-label>
+            <input (input)="applyFilter()" [(ngModel)]="filterValue" matInput placeholder="">
+            <button (click)="resetSearchInput()" *ngIf="filterValue" aria-label="Clear" mat-icon-button matSuffix>
+               <span class="material-symbols-outlined">close</span>
+            </button>
+         </mat-form-field>
+         <mat-error *ngIf="applyFilter().length === 0" class="p-inline-4">😢 موردی یافت نشد!</mat-error>
+
+         <mat-selection-list (selectionChange)="emitFilters()" [formControl]="selectedProvinces" [multiple]="true">
+            <mat-list-option *ngFor="let province of applyFilter()" [value]="province.name">
+               {{ province.name }}
+            </mat-list-option>
+         </mat-selection-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+         <mat-expansion-panel-header collapsedHeight="56px" expandedHeight="64px">
+            <mat-panel-title>
+               <span class="mat-subtitle-1 nmb">{{ commonFilters.priceRange.title }}</span>
+            </mat-panel-title>
+         </mat-expansion-panel-header>
+         <mat-selection-list (selectionChange)="emitFilters()" [(ngModel)]="selectedPriceRange" [multiple]="false">
+            <mat-list-option *ngFor="let option of commonFilters.priceRange.options" [value]="option.value">
+               {{ option.label }}
+            </mat-list-option>
+         </mat-selection-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+         <mat-expansion-panel-header collapsedHeight="56px" expandedHeight="64px">
+            <mat-panel-title>
+               <span class="mat-subtitle-1 nmb txt-gray-900">{{ commonFilters.rating.title }}</span>
+            </mat-panel-title>
+         </mat-expansion-panel-header>
+         <mat-selection-list (selectionChange)="emitFilters()" [(ngModel)]="selectedRating"
+                             [multiple]="commonFilters.rating.multiple">
+            <mat-list-option *ngFor="let option of commonFilters.rating.options" [value]="option.value">
+               {{ option.label }}
+            </mat-list-option>
+         </mat-selection-list>
+      </mat-expansion-panel>
+   </mat-accordion>
+   <div class="div-row-sb p-4">
+      <span class="mat-subtitle-1 nmb txt-gray-900">فقط کالا های موجود</span>
+      <mat-slide-toggle (change)="emitFilters()" [(ngModel)]="selectedAvailability"/>
+   </div>
+</div>
+
+
+

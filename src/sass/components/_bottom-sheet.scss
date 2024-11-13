@@ -1,0 +1,15 @@
+.mat-bottom-sheet-container {
+  --mat-bottom-sheet-actions-height: 81px;
+  --mat-bottom-sheet-toolbar-height: 64px;
+  padding: 0 !important;
+  max-height: 100vh !important;
+  overflow-y: hidden !important;
+}
+
+.mat-bottom-sheet-container-xlarge,
+.mat-bottom-sheet-container-large,
+.mat-bottom-sheet-container-medium {
+  min-width: 640px !important;
+}
+
+

@@ -1,0 +1,23 @@
+@use "sass/abstracts/colors" as *;
+@use "sass/abstracts/typography" as *;
+@use "sass/base";
+@use "sass/components";
+@use "sass/utilities" as util;
+@use "@angular/material" as mat;
+
+$i4twins-light-theme: mat.m2-define-light-theme(
+                (
+                        color: util.$i4twins-palettes,
+                        typography: util.$i4twins-typography,
+                )
+);
+
+@include mat.core();
+@include mat.core-theme($i4twins-light-theme);
+@include mat.button-theme($i4twins-light-theme);
+@include mat.all-component-themes($i4twins-light-theme);
+@include mat.typography-hierarchy(util.$i4twins-typography);
+@include mat.all-component-typographies(util.$i4twins-typography);
+
+:root {
+}

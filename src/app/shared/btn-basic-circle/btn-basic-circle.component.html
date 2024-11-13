@@ -1,0 +1,11 @@
+<a [color]="color" [disabled]="disabled" [style.height]="height" [style.width]="height" [type]="type"
+   class="btn-basic-circle" mat-mini-fab>
+   <span *ngIf="icon" class="div-row">
+      <span class="material-symbols-outlined text-2xl">
+        <ng-content select="[icon]"></ng-content>
+      </span>
+   </span>
+   <span *ngIf="text" class="div-row mat-body-2">
+      <ng-content select="[text]"></ng-content>
+   </span>
+</a>
