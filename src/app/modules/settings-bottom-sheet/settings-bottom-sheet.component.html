@@ -1,1 +1,19 @@
-<app-sidenav-right />
+<div class="bs">
+   <mat-toolbar class="bs_header" color="primary">
+      <div class="div-row p-inline-start-3 gap-3">
+         <span class="material-symbols-outlined text-2xl">tune</span>
+         <span class="mat-headline-6 stylistic nmb">Settings</span>
+      </div>
+      <app-btn-flat (click)="close()" [text]="true" height="40" borderRadius="20" class="p-inline-end-1">
+         <span text>Done!</span>
+      </app-btn-flat>
+   </mat-toolbar>
+   <div class="bs_content">
+      <app-sidenav-right />
+   </div>
+   <div class="bs_buttons">
+      <app-btn-flat (click)="close()" borderRadius="24" height="48">
+         <span text>Done</span>
+      </app-btn-flat>
+   </div>
+</div>

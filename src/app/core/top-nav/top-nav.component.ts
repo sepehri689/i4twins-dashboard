@@ -16,6 +16,8 @@ import {BtnBasicComponent} from "../../shared/btn-basic/btn-basic.component";
 import {SidenavRightComponent} from "../../modules/sidenav-right/sidenav-right.component";
 import {FooterComponent} from "../footer/footer.component";
 import {SettingsBottomSheetComponent} from "../../modules/settings-bottom-sheet/settings-bottom-sheet.component";
+import {Province} from "../../modules/sidenav-right/first-tab-content/settings-filter.model";
+import {FormControl} from "@angular/forms";
 
 @Component({
     selector: 'app-top-nav',
@@ -46,7 +48,7 @@ import {SettingsBottomSheetComponent} from "../../modules/settings-bottom-sheet/
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class TopNavComponent implements OnInit, AfterViewInit {
+export class TopNavComponent implements OnInit {
 
     @ViewChild('leftSidenav') leftSidenav!: MatSidenav;
     @ViewChild('rightSidenav') rightSidenav!: MatSidenav;
@@ -57,12 +59,18 @@ export class TopNavComponent implements OnInit, AfterViewInit {
 
     showFooter$: Observable<boolean>;
 
+    // categories: string[] = [];
+    // provinces: Province[] = [];
+    // selectedCategories: FormControl = new FormControl([]);
+    // selectedProvinces: FormControl = new FormControl([]);
+    // selectedPriceRange: string | null = null;
+    // selectedRating: string | null = null;
+    // selectedAvailability: string | null = null;
+
     isEn: boolean = true;
     isScrolled: boolean = false;
     sizeOfDevice: any;
     currentRoute: string | undefined;
-    linkId!: number;
-    dropdown: boolean = false;
     protected readonly navLinks = navLinks;
     protected readonly navData = navData;
     private destroy$ = new Subject<void>();
@@ -103,9 +111,6 @@ export class TopNavComponent implements OnInit, AfterViewInit {
         this.trackRouterEvents();
     }
 
-    ngAfterViewInit(): void {
-    }
-
     isRouteMatching(route: string): boolean {
         const routePattern = new RegExp(`^${route}(?:\/[0-9a-fA-F-]+)?$`);
         return routePattern.test(<string>this.currentRoute);
@@ -115,16 +120,17 @@ export class TopNavComponent implements OnInit, AfterViewInit {
         this.isEn = !this.isEn;
     }
 
-    showDropdown(index: number): void {
-        this.dropdown = true;
-        this.linkId = index;
-    }
-
-    hideDropdown(): void {
-        this.dropdown = false;
-    }
-
     openSettingsBottomSheet(): void {
+    //     const settingsData = {
+    //         categories: this.categories,
+    //         provinces: this.provinces,
+    //         selectedCategories: this.selectedCategories.value,
+    //         selectedProvinces: this.selectedProvinces.value,
+    //         selectedPriceRange: this.selectedPriceRange,
+    //         selectedRating: this.selectedRating,
+    //         selectedAvailability: this.selectedAvailability
+    //     };
+
         this._bottomSheet.open(SettingsBottomSheetComponent, {
             restoreFocus: true,
         });
@@ -144,6 +150,14 @@ export class TopNavComponent implements OnInit, AfterViewInit {
     onScroll(event: Event) {
         this.isScrolled = window.scrollY > 0;
     }
+
+    // private applyFilters(filters: any): void {
+    //     this.selectedCategories.setValue(filters.categories);
+    //     this.selectedProvinces.setValue(filters.provinces);
+    //     this.selectedPriceRange = filters.priceRange;
+    //     this.selectedRating = filters.rating;
+    //     this.selectedAvailability = filters.availability;
+    // }
 
     private trackScreenWidthChange(): void {
         this.breakpointService.screenWidth$.pipe(takeUntil(this.destroy$))

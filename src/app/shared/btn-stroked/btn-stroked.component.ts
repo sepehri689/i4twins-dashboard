@@ -15,6 +15,7 @@ export class BtnStrokedComponent {
     @Input() leftIcon?: boolean;
     @Input() height?: string;
     @Input() borderRadius?: string = '0';
+    @Input() borderColor?: string = '';
     @Input() type?: string = 'button';
     @Input() disabled?: boolean;
 }

@@ -1,4 +1,5 @@
 @use "./breakpoints" as *;
+@use "./colors" as *;
 @use "./sizes" as *;
 
 @mixin mq($type: "min", $breakpoint) {
@@ -50,20 +51,10 @@
   }
 }
 
-@mixin col($size: 12) {
-  flex: 0 0 percentage($size / 12);
-  max-width: percentage($size / 12);
-}
-
-@mixin col-responsive($breakpoints, $sizes...) {
-  @each $size in $sizes {
-    $breakpoint: nth($size, 1);
-    $col-size: nth($size, 2);
-
-    @if map-get($breakpoints, $breakpoint) {
-      @media (min-width: map-get($breakpoints, $breakpoint)) {
-        @include col($col-size);
-      }
-    }
+@mixin get-border-color($color) {
+  @if (lightness($color) > 70) {
+    border: 1px solid transparent;
+  } @else {
+    border: 1px solid $light-dividers;
   }
 }
