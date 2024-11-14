@@ -19,9 +19,9 @@ export class SettingsFilterService {
         return state ? JSON.parse(state) : {
             categories: [],
             provinces: [],
-            priceRange: null,
-            rating: null,
-            availability: null
+            cylinderHead: null,
+            engineBlock: null,
+            coolingSystem: null
         };
     }
 }

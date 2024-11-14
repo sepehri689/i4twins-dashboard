@@ -1,7 +1,20 @@
-.search {
-  position: sticky;
-  top: 0;
-  padding: .25rem 1rem 0;
-  background-color: white;
-  z-index: 7;
+@use "../../../../sass/abstracts/colors" as *;
+
+
+.filter {
+  &_container {
+    border-top: 1px solid $dark-borders;
+    border-bottom: 1px solid $dark-borders;
+    background-color: white;
+    overflow: hidden;
+    //box-shadow: var(--mat-app-elevation-shadow-level-1);
+  }
+
+  &_search {
+    position: sticky;
+    top: 0;
+    padding: .25rem 1rem 0;
+    background-color: white;
+    z-index: 7;
+  }
 }

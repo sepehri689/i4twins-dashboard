@@ -9,7 +9,7 @@
       </button>
    </mat-sidenav>
    <mat-sidenav #rightSidenav position="end" [opened]="isDesktop" class="sidenav_right" fixedInViewport="true" mode="side">
-      <app-sidenav-right/>
+      <app-sidenav-right class="h-full"/>
    </mat-sidenav>
    <mat-sidenav-content #sidenavContent>
       <mat-toolbar>
@@ -22,21 +22,21 @@
                      </span>
                   </button>
                   <a *ngIf="!isXSmall && navLink.showLogo" routerLink="/">
-                     <img alt="i4twins Logo" class="nav_logo-mobile" src="../../../assets/icon/top-nav/i4twins-v2.svg"/>
+                     <img alt="i4twins Logo" class="nav_logo-mobile ps-3" src="../../../assets/icon/top-nav/i4twins-v2.svg"/>
                   </a>
                   <a (click)="goBack()" *ngIf="navLink.showArrow" class="m-inline-start-1" mat-icon-button>
                      <div class="material-symbols-outlined">arrow_forward_ios</div>
                   </a>
-                  <div class="nav_title mat-headline-5 nmb whitespace-nowrap">{{ navLink.label }}</div>
+                  <div class="ps-3 me-auto mat-headline-5 nmb whitespace-nowrap w-full">{{ navLink.label }}</div>
                   <button mat-icon-button matBadge="{{ 3 }}"
                           routerLink="/" style="line-height: 1">
                      <span class="material-symbols-outlined">notifications</span>
                   </button>
                   <a mat-icon-button style="line-height: 1">
-                     <span class="material-symbols-outlined">account_circle</span>
+                     <span class="material-symbols-outlined ">account_circle</span>
                   </a>
                   <button (click)="isMobile ? openSettingsBottomSheet() : rightSidenav.toggle()" mat-icon-button onclick="this.blur()" style="line-height: 1">
-                     <span class="material-symbols-filled" [ngClass]="{'text-primary' : rightSidenav?.opened}">tune</span>
+                     <span class="material-symbols-filled" [ngClass]="{'txt-primary-500' : rightSidenav?.opened}">tune</span>
                   </button>
                </div>
             </ng-container>

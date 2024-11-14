@@ -1,69 +1,104 @@
-<div class="div-col-start-content">
-   <mat-accordion class="w-full" displayMode="flat">
-      <mat-expansion-panel>
-         <mat-expansion-panel-header collapsedHeight="56px" expandedHeight="64px">
-            <mat-panel-title>
-               <span class="mat-subtitle-1 nmb txt-gray-900">دسته بندی کالا ها</span>
-            </mat-panel-title>
-         </mat-expansion-panel-header>
-         <mat-selection-list (selectionChange)="emitFilters()" [formControl]="selectedCategories" [multiple]="true">
-            <mat-list-option *ngFor="let category of categories" [value]="category">
-               {{ category }}
-            </mat-list-option>
-         </mat-selection-list>
-      </mat-expansion-panel>
-      <mat-expansion-panel>
-         <mat-expansion-panel-header collapsedHeight="56px" expandedHeight="64px">
-            <mat-panel-title>
-               <span class="mat-subtitle-1 nmb txt-gray-900">موقعیت مکانی</span>
-            </mat-panel-title>
-         </mat-expansion-panel-header>
-         <mat-form-field class="search">
-            <mat-label>جستجو</mat-label>
-            <input (input)="applyFilter()" [(ngModel)]="filterValue" matInput placeholder="">
-            <button (click)="resetSearchInput()" *ngIf="filterValue" aria-label="Clear" mat-icon-button matSuffix>
-               <span class="material-symbols-outlined">close</span>
-            </button>
-         </mat-form-field>
-         <mat-error *ngIf="applyFilter().length === 0" class="p-inline-4">😢 موردی یافت نشد!</mat-error>
-
-         <mat-selection-list (selectionChange)="emitFilters()" [formControl]="selectedProvinces" [multiple]="true">
-            <mat-list-option *ngFor="let province of applyFilter()" [value]="province.name">
-               {{ province.name }}
-            </mat-list-option>
-         </mat-selection-list>
-      </mat-expansion-panel>
-      <mat-expansion-panel>
-         <mat-expansion-panel-header collapsedHeight="56px" expandedHeight="64px">
-            <mat-panel-title>
-               <span class="mat-subtitle-1 nmb">{{ commonFilters.priceRange.title }}</span>
-            </mat-panel-title>
-         </mat-expansion-panel-header>
-         <mat-selection-list (selectionChange)="emitFilters()" [(ngModel)]="selectedPriceRange" [multiple]="false">
-            <mat-list-option *ngFor="let option of commonFilters.priceRange.options" [value]="option.value">
-               {{ option.label }}
-            </mat-list-option>
-         </mat-selection-list>
-      </mat-expansion-panel>
-      <mat-expansion-panel>
-         <mat-expansion-panel-header collapsedHeight="56px" expandedHeight="64px">
-            <mat-panel-title>
-               <span class="mat-subtitle-1 nmb txt-gray-900">{{ commonFilters.rating.title }}</span>
-            </mat-panel-title>
-         </mat-expansion-panel-header>
-         <mat-selection-list (selectionChange)="emitFilters()" [(ngModel)]="selectedRating"
-                             [multiple]="commonFilters.rating.multiple">
-            <mat-list-option *ngFor="let option of commonFilters.rating.options" [value]="option.value">
-               {{ option.label }}
-            </mat-list-option>
-         </mat-selection-list>
-      </mat-expansion-panel>
-   </mat-accordion>
-   <div class="div-row-sb p-4">
-      <span class="mat-subtitle-1 nmb txt-gray-900">فقط کالا های موجود</span>
-      <mat-slide-toggle (change)="emitFilters()" [(ngModel)]="selectedAvailability"/>
+<div class="div-col-full gap-6 py-4">
+   <div class="div-col-start-content gap-0.5">
+      <div class="mat-body-1 px-2 nmb text-gray-900/60">Grid Item Settings</div>
+      <div class="div-col-full filter_container">
+         <mat-accordion class="w-full" displayMode="flat">
+            <mat-expansion-panel>
+               <mat-expansion-panel-header [collapsedHeight]="collapsedHeight" [expandedHeight]="expandedHeight">
+                  <mat-panel-title>
+                     <span class="mat-subtitle-1 nmb">Categories</span>
+                  </mat-panel-title>
+               </mat-expansion-panel-header>
+               <mat-selection-list (selectionChange)="emitFilters()" [formControl]="selectedCategories" [multiple]="true">
+                  <mat-list-option *ngFor="let category of categories" [value]="category">
+                     {{ category }}
+                  </mat-list-option>
+               </mat-selection-list>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+               <mat-expansion-panel-header [collapsedHeight]="collapsedHeight" [expandedHeight]="expandedHeight">
+                  <mat-panel-title>
+                     <span class="mat-subtitle-1 nmb">Location</span>
+                  </mat-panel-title>
+               </mat-expansion-panel-header>
+               <mat-form-field class="filter_search">
+                  <mat-label>Search</mat-label>
+                  <input (input)="applyFilter()" [(ngModel)]="filterValue" matInput placeholder="">
+                  <app-btn-basic-circle *ngIf="filterValue.length > 0" (click)="resetSearchInput()" matSuffix [icon]="true" height="40">
+                     <span icon>close</span>
+                  </app-btn-basic-circle>
+               </mat-form-field>
+               <mat-error *ngIf="applyFilter().length === 0 && filterValue.length > 0" class="px-4">No provinces founded! 😢</mat-error>
+               <mat-selection-list (selectionChange)="emitFilters()" [formControl]="selectedProvinces" [multiple]="true">
+                  <mat-list-option *ngFor="let province of applyFilter()" [value]="province.name">
+                     {{ province.name }}
+                  </mat-list-option>
+               </mat-selection-list>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+               <mat-expansion-panel-header [collapsedHeight]="collapsedHeight" [expandedHeight]="expandedHeight">
+                  <mat-panel-title>
+                     <span class="mat-subtitle-1 nmb">{{ commonFilters.cylinderHeads.title }}</span>
+                  </mat-panel-title>
+               </mat-expansion-panel-header>
+               <mat-selection-list (selectionChange)="emitFilters()" [(ngModel)]="selectedCylinderHead" [multiple]="false">
+                  <mat-list-option *ngFor="let option of commonFilters.cylinderHeads.items" [value]="option.value">
+                     {{ option.label }}
+                  </mat-list-option>
+               </mat-selection-list>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+               <mat-expansion-panel-header [collapsedHeight]="collapsedHeight" [expandedHeight]="expandedHeight">
+                  <mat-panel-title>
+                     <span class="mat-subtitle-1 nmb">{{ commonFilters.engineBlocks.title }}</span>
+                  </mat-panel-title>
+               </mat-expansion-panel-header>
+               <mat-selection-list (selectionChange)="emitFilters()" [(ngModel)]="selectedEngineBlock"
+                                   [multiple]="false">
+                  <mat-list-option *ngFor="let option of commonFilters.engineBlocks.items" [value]="option.value">
+                     {{ option.label }}
+                  </mat-list-option>
+               </mat-selection-list>
+            </mat-expansion-panel>
+         </mat-accordion>
+         <div class="div-row-sb p-4">
+            <span class="mat-subtitle-1 nmb">Has Cooling Systems</span>
+            <mat-slide-toggle (change)="emitFilters()" [(ngModel)]="selectedCoolingSystem"/>
+         </div>
+      </div>
+   </div>
+   <div class="div-col-start-content gap-0.5">
+      <div class="mat-body-1 px-2 nmb text-gray-900/60">Grid Device Settings</div>
+      <div class="div-col-full filter_container">
+         <mat-accordion class="w-full" displayMode="flat">
+            <mat-expansion-panel>
+               <mat-expansion-panel-header [collapsedHeight]="collapsedHeight" [expandedHeight]="expandedHeight">
+                  <mat-panel-title>
+                     <span class="mat-subtitle-1 nmb">{{ commonFilters.fuelSystems.title }}</span>
+                  </mat-panel-title>
+               </mat-expansion-panel-header>
+               <mat-selection-list (selectionChange)="emitFilters()" [(ngModel)]="selectedCylinderHead" [multiple]="false">
+                  <mat-list-option *ngFor="let option of commonFilters.fuelSystems.items" [value]="option.value">
+                     {{ option.label }}
+                  </mat-list-option>
+               </mat-selection-list>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+               <mat-expansion-panel-header [collapsedHeight]="collapsedHeight" [expandedHeight]="expandedHeight">
+                  <mat-panel-title>
+                     <span class="mat-subtitle-1 nmb">{{ commonFilters.exhaustSystems.title }}</span>
+                  </mat-panel-title>
+               </mat-expansion-panel-header>
+               <mat-selection-list (selectionChange)="emitFilters()" [(ngModel)]="selectedEngineBlock"
+                                   [multiple]="false">
+                  <mat-list-option *ngFor="let option of commonFilters.exhaustSystems.items" [value]="option.value">
+                     {{ option.label }}
+                  </mat-list-option>
+               </mat-selection-list>
+            </mat-expansion-panel>
+         </mat-accordion>
+      </div>
    </div>
 </div>
-
 
 

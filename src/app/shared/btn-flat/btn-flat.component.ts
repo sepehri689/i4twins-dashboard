@@ -5,7 +5,7 @@ import {MatButtonModule} from '@angular/material/button';
 @Component({
     selector: 'app-btn-flat',
     templateUrl: './btn-flat.component.html',
-    styleUrl: './btn-flat.component.css',
+    styleUrl: './btn-flat.component.scss',
     standalone: true,
     imports: [CommonModule, MatButtonModule],
 })

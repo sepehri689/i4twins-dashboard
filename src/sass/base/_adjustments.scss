@@ -1,5 +1,6 @@
 @use "../abstracts/sizes" as *;
 @use "../abstracts/mixins" as *;
+@use "../abstracts/colors" as *;
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -8,6 +9,10 @@ input::-webkit-inner-spin-button {
 
 input {
   -moz-appearance: textfield !important;
+}
+
+.mat-drawer.sidenav_right {
+  background-color: rgba(var(--color-gray-800-rgb), 0.02);
 }
 
 mark {
@@ -39,15 +44,9 @@ mat-form-field {
   border-radius: $size-8;
 }
 
-
 .mat-mdc-form-field-icon-suffix {
   padding: 0 $size-1 !important;
 }
-
-//.mat-mdc-form-field-error {
-//  display: inline-block !important;
-//  padding-inline-end: $size-4;
-//}
 
 .mat-date-range-input-mirror {
   padding-inline-start: $size-2;
@@ -163,6 +162,13 @@ mat-form-field {
   }
 }
 
+.mat-mdc-tab-header {
+  position: sticky !important;
+  top: 0;
+  background-color: white;
+  z-index: 7;
+}
+
 /*Start customizing accordion*/
 .mat-expansion-panel {
   border-radius: 0 !important;
@@ -175,7 +181,7 @@ mat-form-field {
     inset-inline-start: 1rem;
     width: calc(100% - 1rem);
     height: 1px;
-    background-color: rgb(var(--color-gray-800-rgb), 0.08);
+    background-color: $dark-border;
   }
 
   &:not([class*=mat-elevation-z]) {
@@ -204,9 +210,10 @@ mat-form-field {
 }
 
 /*End customizing accordion*/
+
 @media (hover: hover) {
   ::-webkit-scrollbar {
-    width: $size-1;
+    width: 6px;
     height: $size-1;
 
     &-track {
