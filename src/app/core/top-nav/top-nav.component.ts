@@ -63,9 +63,9 @@ export class TopNavComponent implements OnInit {
     // provinces: Province[] = [];
     // selectedCategories: FormControl = new FormControl([]);
     // selectedProvinces: FormControl = new FormControl([]);
-    // selectedPriceRange: string | null = null;
-    // selectedRating: string | null = null;
-    // selectedAvailability: string | null = null;
+    // selectedCylinderHead: string | null = null;
+    // selectedEngineBlock: string | null = null;
+    // selectedCoolingSystem: string | null = null;
 
     isEn: boolean = true;
     isScrolled: boolean = false;
@@ -126,9 +126,9 @@ export class TopNavComponent implements OnInit {
     //         provinces: this.provinces,
     //         selectedCategories: this.selectedCategories.value,
     //         selectedProvinces: this.selectedProvinces.value,
-    //         selectedPriceRange: this.selectedPriceRange,
-    //         selectedRating: this.selectedRating,
-    //         selectedAvailability: this.selectedAvailability
+    //         selectedCylinderHead: this.selectedCylinderHead,
+    //         selectedEngineBlock: this.selectedEngineBlock,
+    //         selectedCoolingSystem: this.selectedCoolingSystem
     //     };
 
         this._bottomSheet.open(SettingsBottomSheetComponent, {
@@ -154,9 +154,9 @@ export class TopNavComponent implements OnInit {
     // private applyFilters(filters: any): void {
     //     this.selectedCategories.setValue(filters.categories);
     //     this.selectedProvinces.setValue(filters.provinces);
-    //     this.selectedPriceRange = filters.priceRange;
-    //     this.selectedRating = filters.rating;
-    //     this.selectedAvailability = filters.availability;
+    //     this.selectedCylinderHead = filters.cylinderHead;
+    //     this.selectedEngineBlock = filters.engineBlock;
+    //     this.selectedCoolingSystem = filters.coolingSystem;
     // }
 
     private trackScreenWidthChange(): void {

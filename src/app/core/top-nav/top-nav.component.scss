@@ -40,7 +40,7 @@
   max-width: 80rem;
 
   &_logo-mobile {
-    height: 40px;
+    max-height: 32px;
     width: 128px !important;
   }
 
@@ -56,9 +56,6 @@
   }
 
   &_title {
-    padding-inline-start: 1rem;
-    margin-inline-end: auto;
-    width: 100%;
   }
 
   &_avatar {

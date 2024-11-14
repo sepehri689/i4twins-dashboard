@@ -1,4 +1,30 @@
-export const commonFilters = {
+export interface Province {
+    id: number;
+    name: string;
+    center: string;
+    latitude: string;
+    longitude: string;
+}
+
+interface FilterItem {
+    label: string;
+    value: string;
+}
+
+interface FilterCategory {
+    title: string;
+    items: FilterItem[];
+}
+
+interface CommonFilters {
+    cylinderHeads: FilterCategory;
+    engineBlocks: FilterCategory;
+    fuelSystems: FilterCategory;
+    coolingSystems: FilterCategory;
+    exhaustSystems: FilterCategory;
+}
+
+export const commonFilters: CommonFilters = {
     cylinderHeads: {
         title: "Cylinder Heads",
         items: [
@@ -47,10 +73,3 @@ export const commonFilters = {
 };
 
 
-export interface Province {
-    id: number;
-    name: string;
-    center: string;
-    latitude: string;
-    longitude: string;
-}

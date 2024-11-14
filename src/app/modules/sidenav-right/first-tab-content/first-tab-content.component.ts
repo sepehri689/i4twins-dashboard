@@ -6,16 +6,10 @@ import {SettingsFilterService} from "./settings-filter.service";
 import {MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle} from "@angular/material/expansion";
 import {MatListOption, MatSelectionList} from "@angular/material/list";
 import {CommonModule} from "@angular/common";
-import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatError, MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
-import {MatInput, MatInputModule} from "@angular/material/input";
+import {MatError, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 import {MatIconButton} from "@angular/material/button";
 import {MatSlideToggle} from "@angular/material/slide-toggle";
-import {BreakpointService} from "../../../core/services/breakpoints.service";
-import {provideRouter} from "@angular/router";
-import {routes} from "../../../app.routes";
-import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
-import {provideHttpClient} from "@angular/common/http";
-import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
 import {BtnBasicCircleComponent} from "../../../shared/btn-basic-circle/btn-basic-circle.component";
 
 @Component({
@@ -25,19 +19,19 @@ import {BtnBasicCircleComponent} from "../../../shared/btn-basic-circle/btn-basi
     styleUrl: './first-tab-content.component.scss',
     imports: [
         CommonModule,
-        ReactiveFormsModule,
         MatAccordion,
         MatExpansionPanel,
+        MatExpansionPanelHeader,
         MatExpansionPanelTitle,
         MatSelectionList,
         MatListOption,
-        MatExpansionPanelHeader,
+        ReactiveFormsModule,
+        FormsModule,
         MatFormFieldModule,
         MatLabel,
-        FormsModule,
         MatInputModule,
-        MatIconButton,
         MatError,
+        MatIconButton,
         MatSlideToggle,
         BtnBasicCircleComponent,
     ],
@@ -47,13 +41,15 @@ export class FirstTabContentComponent implements OnInit, OnDestroy {
     @Input() provinces: Province[] = [];
     @Input() selectedCategories: FormControl = new FormControl([]);
     @Input() selectedProvinces: FormControl = new FormControl([]);
-    @Input() selectedPriceRange: string | null = null;
-    @Input() selectedRating: string | null = null;
-    @Input() selectedAvailability: string | null = null;
+    @Input() selectedCylinderHead: string | null = null;
+    @Input() selectedEngineBlock: string | null = null;
+    @Input() selectedCoolingSystem: string | null = null;
     @Output() filtersChanged = new EventEmitter<any>();
 
-    commonFilters = commonFilters;
     filterValue: string = '';
+    collapsedHeight: string = '3.2rem';
+    expandedHeight: string = '3.6rem';
+    commonFilters = commonFilters;
     private destroy$ = new Subject<void>();
 
     constructor(
@@ -69,9 +65,9 @@ export class FirstTabContentComponent implements OnInit, OnDestroy {
         const filters = {
             categories: this.selectedCategories.value,
             provinces: this.selectedProvinces.value,
-            priceRange: this.selectedPriceRange,
-            rating: this.selectedRating,
-            availability: this.selectedAvailability,
+            cylinderHead: this.selectedCylinderHead,
+            engineBlock: this.selectedEngineBlock,
+            coolingSystem: this.selectedCoolingSystem,
         };
 
         this.filtersChanged.emit(filters);
@@ -82,7 +78,7 @@ export class FirstTabContentComponent implements OnInit, OnDestroy {
         if (!this.filterValue) return this.provinces;
 
         return this.provinces.filter(province => {
-            return province.name.includes(this.filterValue.trim());
+            return province.name.toLowerCase().includes(this.filterValue.trim());
         });
     }
 
@@ -102,9 +98,9 @@ export class FirstTabContentComponent implements OnInit, OnDestroy {
                 if (state) {
                     this.selectedCategories.setValue(state.categories);
                     this.selectedProvinces.setValue(state.provinces);
-                    this.selectedPriceRange = state.priceRange;
-                    this.selectedRating = state.rating;
-                    this.selectedAvailability = state.availability;
+                    this.selectedCylinderHead = state.cylinderHead;
+                    this.selectedEngineBlock = state.engineBlock;
+                    this.selectedCoolingSystem = state.coolingSystem;
                 }
             });
     }

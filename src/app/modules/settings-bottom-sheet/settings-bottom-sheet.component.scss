@@ -9,6 +9,7 @@
   &_content {
     height: calc(100vh - var(--mat-bottom-sheet-actions-height) - var(--mat-bottom-sheet-toolbar-height));
     overflow-y: auto;
+    background-color: rgba(var(--color-gray-800-rgb), 0.02);
 
     @include mq("min", "md") {
       height: calc(100vh - var(--mat-bottom-sheet-actions-height) - var(--mat-bottom-sheet-toolbar-height) - 24px);
